@@ -8,7 +8,8 @@ namespace Assets.Scripts.Editor
         [MenuItem("Assets/Build AssetBundles")]
         public static void BuildAllAssetBundles()
         {
-            string assetBundleDirectory = "Assets/AssetBundles";
+            var assetBundleDirectory = "Assets/AssetBundles";
+
             if (!Directory.Exists(assetBundleDirectory))
             {
                 Directory.CreateDirectory(assetBundleDirectory);

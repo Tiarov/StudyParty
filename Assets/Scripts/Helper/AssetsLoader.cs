@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Helper
 {
     public class AssetsLoader : MonoBehaviour
     {
+        private const string BUNDLE_URL = "file:///{0}/AssetBundles/{1}";
+
         public string BundleName = "myfirstasset";
         public string AssetName = "ColorizedPrefab";
 
-        private string _bundleUrl = "file:///{0}/AssetBundles/{1}";
-        private int _version;
-        private AssetBundle _bundle;
+        [SerializeField]
+        private int _version = 0;
 
         private void Start()
         {
@@ -23,7 +23,8 @@ namespace Assets.Scripts
         {
             while (!Caching.ready)
                 yield return null;
-            using (WWW www = WWW.LoadFromCacheOrDownload(string.Format(_bundleUrl, Application.dataPath, bundleName), 0))
+
+            using (WWW www = WWW.LoadFromCacheOrDownload(string.Format(BUNDLE_URL, Application.dataPath, bundleName), _version))
             {
                 yield return www;
                 if (www.error != null)
@@ -31,19 +32,11 @@ namespace Assets.Scripts
                     throw new Exception("WWW download had an error:" + www.error);
                 }
 
-                _bundle = www.assetBundle;
+                var bundle = www.assetBundle;
 
-                if (String.IsNullOrEmpty(assetName))
-                {
-                    Instantiate(_bundle.mainAsset);
-                }
-                else
-                {
-                    Instantiate(_bundle.LoadAsset(assetName));
-                }
+                Instantiate(string.IsNullOrEmpty(assetName) ? bundle.mainAsset : bundle.LoadAsset(assetName));
 
-                //_bundle.Unload(true);
-                _bundle.Unload(false);
+                bundle.Unload(false);
             }
         }
     }
