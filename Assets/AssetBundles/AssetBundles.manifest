@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 1219194403
+CRC: 2496056316
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: newasset.go
+      Name: myfirstasset
       Dependencies: {}
