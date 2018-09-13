@@ -1,35 +1,42 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts
 {
     public class AssetsLoader : MonoBehaviour
     {
-        private const string BUNDLE_URL = "file:///{0}/AssetBundles/{1}";
+        private const string BUNDLE_URL = "file:///{0}/AssetBundles/";
+        private const string ASSET_URL = "https://www.dropbox.com/s/5uulc63anf4k9a2/bundlewithbackground?dl=1";
 
+        public bool fromPersistentData;
         public string BundleName = "myfirstasset";
         public string AssetName = "ColorizedPrefab";
 
         [SerializeField]
         private int _version = 0;
 
-        public void LoadAsset()
+        public void DownloadAsset()
         {
-            StartCoroutine(DownloadAndCache(BundleName, AssetName));
+            StartCoroutine(DownloadAsset(ASSET_URL));
         }
 
-        private void Start()
+        public void LoadAssetToScene()
         {
-            //StartCoroutine(DownloadAndCache(BundleName, AssetName));
+            StartCoroutine(LoadAsset(fromPersistentData ? "file:///" + Application.persistentDataPath + "/" : String.Format(BUNDLE_URL, Application.dataPath),
+                BundleName, AssetName));
         }
 
-        private IEnumerator DownloadAndCache(string bundleName, string assetName)
+        private IEnumerator LoadAsset(string path, string bundleName, string assetName)
         {
-            while (!Caching.ready)
-                yield return null;
+            //while (!Caching.ready)
+            //    yield return null;
+            
 
-            using (WWW www = new WWW(string.Format(BUNDLE_URL, Application.dataPath, bundleName)))
+            using (WWW www = new WWW(path + bundleName))
             {
                 yield return www;
 
@@ -49,6 +56,20 @@ namespace Assets.Scripts
                 bundle.Unload(false);
                 Resources.UnloadUnusedAssets();
             }
+        }
+
+        private IEnumerator DownloadAsset(string url)
+        {
+            using (var request = UnityWebRequest.Get(url))
+            {
+                yield return request.SendWebRequest();
+
+                var bytes = request.downloadHandler.data;
+
+                File.WriteAllBytes(Application.persistentDataPath + "/" + BundleName, bytes);
+            }
+
+            LoadAssetToScene();
         }
     }
 }
