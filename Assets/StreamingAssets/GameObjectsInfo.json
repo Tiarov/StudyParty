@@ -1,0 +1,27 @@
+{"ObjectsList":[
+  {
+    "Name": "Object01",
+    "Position": [
+      1,
+      1,
+      1
+    ]
+  },
+  {
+    "Name": "Object02",
+    "Position": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "Name": "Object03",
+    "Position": [
+      3,
+      3,
+      3
+    ]
+  }
+]
+}
