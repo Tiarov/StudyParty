@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Helper
+namespace Assets.Scripts
 {
     public class AssetsLoader : MonoBehaviour
     {
@@ -14,9 +14,14 @@ namespace Assets.Scripts.Helper
         [SerializeField]
         private int _version = 0;
 
-        private void Start()
+        public void LoadAsset()
         {
             StartCoroutine(DownloadAndCache(BundleName, AssetName));
+        }
+
+        private void Start()
+        {
+            //StartCoroutine(DownloadAndCache(BundleName, AssetName));
         }
 
         private IEnumerator DownloadAndCache(string bundleName, string assetName)
@@ -24,9 +29,10 @@ namespace Assets.Scripts.Helper
             while (!Caching.ready)
                 yield return null;
 
-            using (WWW www = WWW.LoadFromCacheOrDownload(string.Format(BUNDLE_URL, Application.dataPath, bundleName), _version))
+            using (WWW www = new WWW(string.Format(BUNDLE_URL, Application.dataPath, bundleName)))
             {
                 yield return www;
+
                 if (www.error != null)
                 {
                     throw new Exception("WWW download had an error:" + www.error);
@@ -34,9 +40,14 @@ namespace Assets.Scripts.Helper
 
                 var bundle = www.assetBundle;
 
-                Instantiate(string.IsNullOrEmpty(assetName) ? bundle.mainAsset : bundle.LoadAsset(assetName));
+                AssetBundleRequest request = bundle.LoadAssetAsync(assetName, typeof(GameObject));
+
+                yield return request;
+
+                Instantiate(request.asset);
 
                 bundle.Unload(false);
+                Resources.UnloadUnusedAssets();
             }
         }
     }
