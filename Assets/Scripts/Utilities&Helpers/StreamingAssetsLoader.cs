@@ -4,15 +4,19 @@ using UnityEngine;
 public class StreamingAssetsLoader : MonoBehaviour
 {
     public string FileName = "GameObjectsInfo.json";
-
-    private void Start()
+    
+    public void ReadJson()
     {
-        var json = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, FileName));
-        var infos = JsonUtility.FromJson<InfosCollection>(json).ObjectsList;
+        var infos = JsonUtility.FromJson<InfosCollection>(ReadJsonFromStreamingPath()).ObjectsList;
 
         foreach (var info in infos)
         {
             Debug.Log(info.Name + " " + info.Position[0]);
         }
+    }
+
+    public string ReadJsonFromStreamingPath()
+    {
+        return File.ReadAllText(Path.Combine(Application.streamingAssetsPath, FileName));
     }
 }

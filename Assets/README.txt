@@ -1,0 +1,1 @@
+About PlayerPrefs task- solution in ReadingFileFromStreamingAssetsPathScene
