@@ -94,8 +94,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = true;
     }
-
-
+    
     protected virtual void OnTrackingLost()
     {
         var rendererComponents = GetComponentsInChildren<Renderer>(true);

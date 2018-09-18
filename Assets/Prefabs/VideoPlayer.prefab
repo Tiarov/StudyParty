@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23481008538614758}
   - component: {fileID: 64496077180358836}
   - component: {fileID: 114073009273192062}
-  - component: {fileID: 114167889999984286}
   - component: {fileID: 82180526041582656}
   m_Layer: 0
   m_Name: VideoPlayer
@@ -209,17 +208,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VideoMaterial: {fileID: 2100000, guid: 97cfd25b24ce93748a27d8d81575b7da, type: 2}
   Clip: {fileID: 15200000, guid: 594daa14c405d5d4da7fff6112153634, type: 3}
-  Events: {fileID: 114167889999984286}
+  Events: {fileID: 0}
   Volume: 0.2
---- !u!114 &114167889999984286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637952949463776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53445f4ed7b7a4d4ab36904acdc2d10b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MTrackableBehaviour: {fileID: 0}

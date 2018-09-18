@@ -27,7 +27,6 @@ public class VideoPlayerBehaivor : MonoBehaviour
 
         Events.TrackingFoundEvent += OnTrackingFound;
         Events.TrackingLostEvent += OnTrackingLost;
-        OnTrackingFound();
     }
 
     private void OnDestroy()

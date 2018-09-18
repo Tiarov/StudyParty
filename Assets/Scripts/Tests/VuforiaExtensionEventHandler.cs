@@ -1,46 +1,20 @@
-﻿
-using Vuforia;
-using UnityEngine;
-
-public class VuforiaExtensionEventHandler : MonoBehaviour, ITrackableEventHandler
+﻿public class VuforiaExtensionEventHandler : DefaultTrackableEventHandler
 {
-    public TrackableBehaviour MTrackableBehaviour;
-
     public System.Action TrackingFoundEvent;
     public System.Action TrackingLostEvent;
 
-    private void Start()
+    protected override void OnTrackingLost()
     {
-        if (MTrackableBehaviour)
-        {
-            MTrackableBehaviour.RegisterTrackableEventHandler(this);
-        }
-    }
+        base.OnTrackingLost();
 
-    public void OnTrackableStateChanged(
-        TrackableBehaviour.Status previousStatus,
-        TrackableBehaviour.Status newStatus)
-    {
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
-            newStatus == TrackableBehaviour.Status.TRACKED ||
-            newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
-        {
-            OnTrackingFound();
-        }
-        else
-        {
-            OnTrackingLost();
-        }
-    }
-
-    public void OnTrackingLost()
-    {
         if (TrackingLostEvent != null)
             TrackingLostEvent();
     }
 
-    public void OnTrackingFound()
+    protected override void OnTrackingFound()
     {
+        base.OnTrackingFound();
+
         if (TrackingFoundEvent != null)
             TrackingFoundEvent();
     }
