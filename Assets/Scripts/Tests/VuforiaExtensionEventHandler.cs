@@ -1,6 +1,6 @@
 ﻿
-using UnityEngine;
 using Vuforia;
+using UnityEngine;
 
 public class VuforiaExtensionEventHandler : MonoBehaviour, ITrackableEventHandler
 {
@@ -44,5 +44,4 @@ public class VuforiaExtensionEventHandler : MonoBehaviour, ITrackableEventHandle
         if (TrackingFoundEvent != null)
             TrackingFoundEvent();
     }
-
 }

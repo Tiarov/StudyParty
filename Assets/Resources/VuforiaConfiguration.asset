@@ -3,16 +3,17 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76b89ff4afc5a04195eab54bc63d331, type: 3}
+  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AdVKkCz/////AAABmW4NXeCrCUVejuUkWwWSfP0cUQ/eR6u3OSJMHqj+AfJBH42nH4A8W2549OFXKQ5JWX0TFv878TktFouHmkAIQfL0marQTgXNMHKQ1G7hPirN1zkEhbKS6py91ZGJc3WbuzayBn5j481n5oKYJO/MNwrZlbD+IqqCtOOlCC2o62H8HA0c6cjqq8CdQHdo1uVsj5ptucXysKf9nzsKYk1jvthXi2JuG7P/KY/4Ot8avJj71UNVxXhPs2xEhSOvsGSqoIWGKvwmVYamQdRr0izqmsjuJV57J6JgXDLi0ny+njJ2euqzLPpAk8Gn8lr0FkssMK8zVZnWzRBS2qO/rf2GEdtu1obwvoGyBVF1FAvI/Y13
+    ufoLicenseKey: QVNKWU5rLy8vLy8vQUFBQUtIRlRCVUoveDBOdHV2RlMzc24yck9kVFJxU1FJYmgyK1FEUjhDNXFVYzl0ZTZuRFlsV1pSbDRrNGRtVWJhSkhaQTMvei9pdk5jZ3hXd0pnWjBIT2Z6OE00MnJXZzZITVEyZDNLWk44Qm05MGQxZHQxUmpmQnlsZlZydyszVnE2aDh6YmxqWmovOGxmTmVBdDc4ckJ4a0gybEdNVldrN2N1cHFPdTdBek5IQkYxS2pQcTFKQ2dkUEluWkREZEJZdmdKQjZmZXF5YXNaOXZNallObFU3QmVwY1V6VlQyaHVXaVhydlVnV0hmaUdXdDMvR2lUOXI3RVY3N0dMNjlmQXg4U01TTU5IS0YzL3ZVcHRJMUozSzlGdVNEbDlvbVBEd0ZPZUp0eWw5RUJwa3l1dytLYWlCeU43Vm04NXI2eUtaaUZ2VVFmT2lCaHgrRCtLeFNraVRBenY5QlRpMm5nMHRFNHV1YTljQnV2V0Y=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
     maxSimultaneousImageTargets: 3
@@ -20,9 +21,9 @@ MonoBehaviour:
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
+    version: 7.2.23
   digitalEyewear:
     cameraOffset: 0.06
-    distortionRenderingMode: 2
     distortionRenderingLayer: 31
     eyewearType: 0
     stereoFramework: 0
@@ -42,27 +43,25 @@ MonoBehaviour:
       DistortionCoefficients: {x: 0, y: 0}
       FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
-  databaseLoad:
-    dataSetsToLoad:
-    - TestTargets
-    dataSetsToActivate:
-    - TestTargets
   videoBackground:
     clippingMode: 0
-    matteShader: {fileID: 4800000, guid: f84e93cca971cda47a225f4c6a4156c9, type: 3}
+    numDivisions: 2
+    videoBackgroundShader: {fileID: 15311, guid: 0000000000000000f000000000000000,
+      type: 0}
+    matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
-  smartTerrainTracker:
-    autoInitTracker: 0
-    autoStartTracker: 0
-    autoInitBuilder: 0
-    sceneUnitsToMillimeter: 0
   deviceTracker:
     autoInitTracker: 0
     autoStartTracker: 0
+    trackingMode: 1
     posePrediction: 0
     modelCorrectionMode: 0
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
+    fusionMode: 7
+  smartTerrain:
+    autoInitTracker: 0
+    autoStartTracker: 0
   webcam:
     deviceNameSetInEditor: 
     flipHorizontally: 0
