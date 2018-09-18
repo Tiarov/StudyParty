@@ -1,13 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SidePanelController : MonoBehaviour
+namespace Assets.Scripts.MonoBehaviours.UI
 {
-    public Animation Animation;
-
-    public void Open()
+    public class SidePanelController : MonoBehaviour
     {
-        
+        public Animation Animation;
+
+        private string _closeAnimName= "SidePanel_Close";
+        private string _openAnimName= "SidePanel_Open";
+
+        public void Open()
+        {
+            PlayAnim(_openAnimName);
+        }
+
+        public void Close()
+        {
+            PlayAnim(_closeAnimName);
+        }
+
+        private void PlayAnim(string name)
+        {
+            Animation.Play(name);
+        }
     }
 }
